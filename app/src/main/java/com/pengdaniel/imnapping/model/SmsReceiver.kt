@@ -1,4 +1,4 @@
-package com.pengdaniel.imnapping
+package com.pengdaniel.imnapping.model
 
 import android.content.BroadcastReceiver
 import android.content.Context
