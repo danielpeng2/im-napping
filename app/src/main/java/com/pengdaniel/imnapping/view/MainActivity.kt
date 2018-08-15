@@ -11,22 +11,21 @@ import com.pengdaniel.imnapping.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity(), MainView {
 
-    private lateinit var mainPresenter: MainPresenter
-
+    private lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainPresenter = MainPresenter(this)
+        presenter = MainPresenter(this)
     }
 
     override fun checkSmsPermissionGranted() = ContextCompat.checkSelfPermission(this,
-            Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED
+            Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED
 
     override fun requestSmsPermission() {
         ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.RECEIVE_SMS), REQUEST_SMS_PERMISSION)
+                arrayOf(Manifest.permission.SEND_SMS), REQUEST_SMS_PERMISSION)
     }
 
     companion object {
