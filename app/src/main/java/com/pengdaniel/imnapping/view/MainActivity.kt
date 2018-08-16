@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = MainPresenter(this)
+        presenter = MainPresenter(this, this)
     }
 
     override fun checkSmsPermissionGranted() = ContextCompat.checkSelfPermission(this,

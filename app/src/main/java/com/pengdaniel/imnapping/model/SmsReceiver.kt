@@ -13,6 +13,9 @@ class SmsReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
+        val sharedPrefManager: SharedPrefManager?
+                = if (context != null) SharedPrefManager(context) else null
+
         if (intent?.action?.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION) == true) {
 
             Toast.makeText(context, "Message received", Toast.LENGTH_LONG).show()
@@ -21,21 +24,23 @@ class SmsReceiver : BroadcastReceiver() {
             val msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent)
             // Get message
             val smsMessage = msgs[0]
+            val incomingNum = smsMessage.displayOriginatingAddress
             Log.i(TAG, "Message received: " + smsMessage?.messageBody + " from " + smsMessage.displayOriginatingAddress)
 
-            sendSMS(smsMessage.displayOriginatingAddress)
+            val message: String = sharedPrefManager?.getMessage(incomingNum) ?: DEFAULT_SMS_MESSAGE
+            sendSMS(incomingNum, message)
         }
     }
 
-    private fun sendSMS(phoneNumber: String) {
-        val text = "Testing!"
-
+    private fun sendSMS(phoneNumber: String, message: String) {
         val smsManager = SmsManager.getDefault()
-        smsManager.sendTextMessage(phoneNumber, null, text, null, null)
+        smsManager.sendTextMessage(phoneNumber, null, message, null, null)
     }
 
     companion object {
         private const val PDUS = "pdus"
         private val TAG = SmsReceiver::class.java.name
+
+        private const val DEFAULT_SMS_MESSAGE = "I'm napping right now"
     }
 }

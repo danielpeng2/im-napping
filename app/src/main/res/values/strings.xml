@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">I\'m Napping</string>
+
+    <!--Shared Preferences-->
+    <string name="default_sms_reply">I\'m napping right now</string>
 </resources>
