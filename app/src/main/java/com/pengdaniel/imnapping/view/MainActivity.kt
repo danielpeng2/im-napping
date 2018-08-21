@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun checkSmsPermissions() {
-        PermissionUtil.checkSmsPermissionGranted(this)
+        if (!PermissionUtil.checkSmsPermissionGranted(this)) {
+            PermissionUtil.requestSmsPermissions(this)
+        }
     }
 
     override fun updateStatusButtonText(@StringRes buttonText: Int) {
