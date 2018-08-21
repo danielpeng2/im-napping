@@ -1,8 +1,6 @@
 package com.pengdaniel.imnapping.presenter
 
 import android.content.Context
-import android.content.pm.PackageManager
-import android.support.v4.content.ContextCompat
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.model.SharedPrefManager
 import com.pengdaniel.imnapping.view.MainView
@@ -22,19 +20,6 @@ class MainPresenter(val view: MainView, val context: Context): Presenter {
                                     else R.string.button_status_off)
     }
 
-    private fun isPermissionGranted(permission: String) =
-            ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
-
-    fun checkSmsPermissionGranted() {
-        if (!isPermissionGranted(android.Manifest.permission.RECEIVE_SMS) ||
-            !isPermissionGranted(android.Manifest.permission.SEND_SMS) ||
-            !isPermissionGranted(android.Manifest.permission.READ_SMS)) {
-                view.requestPermissions(android.Manifest.permission.RECEIVE_SMS,
-                        android.Manifest.permission.SEND_SMS,
-                        android.Manifest.permission.READ_SMS)
-            }
-    }
-
     fun onStatusButtonClicked() {
         receiverStatus = !receiverStatus
         view.updateStatusButtonText(if (receiverStatus) R.string.button_status_on
@@ -42,6 +27,7 @@ class MainPresenter(val view: MainView, val context: Context): Presenter {
     }
 
     override fun onCreate() {
+        view.checkSmsPermissions()
     }
 
     override fun onPause() {

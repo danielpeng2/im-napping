@@ -2,10 +2,12 @@ package com.pengdaniel.imnapping.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.annotation.StringRes
 import android.support.v4.app.ActivityCompat
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.presenter.MainPresenter
+import com.pengdaniel.imnapping.util.PermissionUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
@@ -17,15 +19,15 @@ class MainActivity : AppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
 
         presenter = MainPresenter(this, this)
-        presenter.checkSmsPermissionGranted()
+        presenter.onCreate()
 
         status_button.setOnClickListener {
             presenter.onStatusButtonClicked()
         }
     }
 
-    override fun requestPermissions(vararg permissions: String) {
-        ActivityCompat.requestPermissions(this, permissions, REQUEST_SMS_PERMISSION)
+    override fun checkSmsPermissions() {
+        PermissionUtil.checkSmsPermissionGranted(this)
     }
 
     override fun updateStatusButtonText(@StringRes buttonText: Int) {
@@ -35,9 +37,5 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onPause() {
         super.onPause()
         presenter.onPause()
-    }
-
-    companion object {
-        private const val REQUEST_SMS_PERMISSION = 0
     }
 }
