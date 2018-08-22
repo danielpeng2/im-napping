@@ -7,4 +7,8 @@ interface MainView {
     fun checkSmsPermissions()
 
     fun updateStatusButtonText(@StringRes buttonText: Int)
+
+    fun enableBroadcastReceiver()
+
+    fun disableBroadcastReceiver()
 }

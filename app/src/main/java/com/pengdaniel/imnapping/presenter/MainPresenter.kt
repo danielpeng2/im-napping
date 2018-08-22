@@ -22,8 +22,13 @@ class MainPresenter(val view: MainView, val context: Context): Presenter {
 
     fun onStatusButtonClicked() {
         receiverStatus = !receiverStatus
-        view.updateStatusButtonText(if (receiverStatus) R.string.button_status_on
-                                    else R.string.button_status_off)
+        if (receiverStatus) {
+            view.updateStatusButtonText(R.string.button_status_on)
+            view.enableBroadcastReceiver()
+        } else {
+            view.updateStatusButtonText(R.string.button_status_off)
+            view.disableBroadcastReceiver()
+        }
     }
 
     override fun onCreate() {
