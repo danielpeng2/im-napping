@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">I\'m Napping</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_message_settings">Add Custom Messages</string>
 
     <!--Status Button-->
     <string name="button_status_off">Turn on</string>

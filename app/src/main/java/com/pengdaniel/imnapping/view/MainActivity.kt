@@ -4,9 +4,7 @@ import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.annotation.StringRes
-import android.support.v4.app.ActivityCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.pengdaniel.imnapping.R
@@ -44,7 +42,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_settings -> {
+        R.id.action_message_settings -> {
             true
         } else -> {
             super.onOptionsItemSelected(item)
@@ -59,6 +57,10 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun updateStatusButtonText(@StringRes buttonText: Int) {
         status_button.text = getString(buttonText)
+    }
+
+    override fun updateStatusImage(image: Int) {
+        status_kitty.setImageResource(image)
     }
 
     override fun enableBroadcastReceiver() {

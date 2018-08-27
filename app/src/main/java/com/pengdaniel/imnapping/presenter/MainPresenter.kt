@@ -16,18 +16,26 @@ class MainPresenter(val view: MainView, val context: Context): Presenter {
         sharedPrefManager.setCustomMessage("+16135581398", "Hi icon south")
         sharedPrefManager.setCustomMessage("+17788331438", "Mrawh!")
         receiverStatus = sharedPrefManager.getReceiverStatus()
-        view.updateStatusButtonText(if (receiverStatus) R.string.button_status_on
-                                    else R.string.button_status_off)
+        updateStatusViews()
     }
 
     fun onStatusButtonClicked() {
         receiverStatus = !receiverStatus
+        updateStatusViews()
         if (receiverStatus) {
-            view.updateStatusButtonText(R.string.button_status_on)
             view.enableBroadcastReceiver()
         } else {
-            view.updateStatusButtonText(R.string.button_status_off)
             view.disableBroadcastReceiver()
+        }
+    }
+
+    private fun updateStatusViews() {
+        if (receiverStatus) {
+            view.updateStatusButtonText(R.string.button_status_on)
+            view.updateStatusImage(R.drawable.ic_kitty_asleep)
+        } else {
+            view.updateStatusButtonText(R.string.button_status_off)
+            view.updateStatusImage(R.drawable.ic_kitty_awake)
         }
     }
 
