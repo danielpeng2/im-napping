@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.annotation.StringRes
 import android.support.v4.app.ActivityCompat
+import android.view.Menu
+import android.view.MenuItem
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.model.SmsReceiver
 import com.pengdaniel.imnapping.presenter.MainPresenter
@@ -21,11 +23,31 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(toolbar)
+
         presenter = MainPresenter(this, this)
         presenter.onCreate()
 
         status_button.setOnClickListener {
             presenter.onStatusButtonClicked()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.onPause()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_settings -> {
+            true
+        } else -> {
+            super.onOptionsItemSelected(item)
         }
     }
 
@@ -51,10 +73,5 @@ class MainActivity : AppCompatActivity(), MainView {
         this.packageManager.setComponentEnabledSetting(componentName,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        presenter.onPause()
     }
 }

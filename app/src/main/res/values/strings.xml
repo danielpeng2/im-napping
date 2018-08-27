@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">I\'m Napping</string>
 
+    <string name="action_settings">Settings</string>
+
     <!--Status Button-->
     <string name="button_status_off">Turn on</string>
     <string name="button_status_on">Turn off</string>
