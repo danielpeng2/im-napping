@@ -1,6 +1,7 @@
 package com.pengdaniel.imnapping.view
 
 import android.content.ComponentName
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(main_toolbar)
 
         presenter = MainPresenter(this, this)
         presenter.onCreate()
@@ -43,6 +44,8 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_message_settings -> {
+            val intent = Intent(this, CustomMessagesActivity::class.java)
+            startActivity(intent)
             true
         } else -> {
             super.onOptionsItemSelected(item)

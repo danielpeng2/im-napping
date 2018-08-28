@@ -21,6 +21,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".view.CustomMessagesActivity"
+            android:parentActivityName=".view.MainActivity">
+        </activity>
+
         <receiver
             android:name=".model.SmsReceiver"
             android:permission="android.permission.BROADCAST_SMS"
