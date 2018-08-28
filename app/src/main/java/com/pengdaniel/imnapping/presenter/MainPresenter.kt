@@ -3,6 +3,7 @@ package com.pengdaniel.imnapping.presenter
 import android.content.Context
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.model.SharedPrefManager
+import com.pengdaniel.imnapping.model.SharedPrefType
 import com.pengdaniel.imnapping.view.MainView
 
 
@@ -11,10 +12,14 @@ class MainPresenter(val view: MainView, val context: Context): Presenter {
 
     private var receiverStatus: Boolean
     private val sharedPrefManager = SharedPrefManager(context)
+    // TODO: remove temporary pref manager
+    private val messagesPrefManager = SharedPrefManager(context, SharedPrefType.MESSAGES)
 
     init {
-//        sharedPrefManager.setCustomMessage("+16135581398", "Hi icon south")
-//        sharedPrefManager.setCustomMessage("+17788331438", "Mrawh!")
+        // TODO: remove temp custom messages
+        messagesPrefManager.setCustomMessage("6505551212", "sdfsdfsdfs")
+        messagesPrefManager.setCustomMessage("+16135581398", "Hi icon south")
+        messagesPrefManager.setCustomMessage("+17788331438", "Mrawh!")
         receiverStatus = sharedPrefManager.getReceiverStatus()
         updateStatusViews()
     }

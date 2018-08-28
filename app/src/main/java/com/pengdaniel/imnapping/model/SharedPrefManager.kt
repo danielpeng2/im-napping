@@ -3,12 +3,18 @@ package com.pengdaniel.imnapping.model
 import android.content.Context
 import android.content.SharedPreferences
 
-class SharedPrefManager(context: Context) {
+class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.DEFAULT) {
 
     private var sharedPreferences: SharedPreferences
 
     init {
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_KEY, Context.MODE_PRIVATE)
+        sharedPreferences = when (type) {
+            SharedPrefType.MESSAGES -> {
+                context.getSharedPreferences(MESSAGES_PREF_KEY, Context.MODE_PRIVATE)
+            } else -> {
+                context.getSharedPreferences(DEFAULT_PREF_KEY, Context.MODE_PRIVATE)
+            }
+        }
     }
 
     inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
@@ -38,7 +44,9 @@ class SharedPrefManager(context: Context) {
     companion object {
         private const val DEFAULT_SMS_MESSAGE = "I'm napping right now"
 
-        private const val SHARED_PREF_KEY = "com.pengdaniel.imnapping.PREFERENCE_FILE_KEY"
+        private const val DEFAULT_PREF_KEY = "com.pengdaniel.imnapping.DEFAULT_PREF_KEY"
+        private const val MESSAGES_PREF_KEY = "com.pengdaniel.imnapping.MESSAGES_PREF_KEY"
+
         private const val DEFAULT_MSG_KEY = "DEFAULT_MSG_KEY"
         private const val RECEIVER_STATUS_KEY = "RECEIVER_STATUS_KEY"
     }

@@ -14,7 +14,7 @@ class SmsReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
 
         val sharedPrefManager: SharedPrefManager?
-                = if (context != null) SharedPrefManager(context) else null
+                = if (context != null) SharedPrefManager(context, SharedPrefType.MESSAGES) else null
 
         if (intent?.action?.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION) == true) {
 
@@ -38,7 +38,6 @@ class SmsReceiver : BroadcastReceiver() {
     }
 
     companion object {
-        private const val PDUS = "pdus"
         private val TAG = SmsReceiver::class.java.name
 
         private const val DEFAULT_SMS_MESSAGE = "I'm napping right now"
