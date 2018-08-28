@@ -6,4 +6,7 @@
     <!--Status Button-->
     <string name="button_status_off">Turn on</string>
     <string name="button_status_on">Turn off</string>
+
+    <!--Custom Messages Activity-->
+    <string name="title_custom_messages">Create Custom Messages</string>
 </resources>
