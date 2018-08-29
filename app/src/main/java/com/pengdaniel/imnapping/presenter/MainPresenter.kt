@@ -8,7 +8,7 @@ import com.pengdaniel.imnapping.view.MainView
 
 
 // TODO: remove dependency on context
-class MainPresenter(val view: MainView, val context: Context): Presenter {
+class MainPresenter(val view: MainView, context: Context): Presenter {
 
     private var receiverStatus: Boolean
     private val sharedPrefManager = SharedPrefManager(context)
