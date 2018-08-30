@@ -18,6 +18,9 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = getString(R.string.title_custom_messages)
 
+        fab.setOnClickListener {
+        }
+
         presenter = CustomMessagesPresenter()
     }
 }
