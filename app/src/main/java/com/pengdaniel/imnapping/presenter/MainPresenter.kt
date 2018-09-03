@@ -17,9 +17,9 @@ class MainPresenter(val view: MainView, context: Context): Presenter {
 
     init {
         // TODO: remove temp custom messages
-        messagesPrefManager.setCustomMessage("6505551212", "sdfsdfsdfs")
-        messagesPrefManager.setCustomMessage("+16135581398", "Hi icon south")
-        messagesPrefManager.setCustomMessage("+17788331438", "Mrawh!")
+        messagesPrefManager.setCustomMessage(address = "6505551212", newMessage = "sdfsdfsdfs")
+        messagesPrefManager.setCustomMessage(address = "+16135581398", newMessage = "Hi icon south")
+        messagesPrefManager.setCustomMessage(address = "+17788331438", newMessage = "Mrawh!")
         receiverStatus = sharedPrefManager.getReceiverStatus()
         updateStatusViews()
     }

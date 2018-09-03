@@ -27,7 +27,7 @@ class SmsReceiver : BroadcastReceiver() {
             val incomingNum = smsMessage.displayOriginatingAddress
             Log.i(TAG, "Message received: " + smsMessage?.messageBody + " from " + smsMessage.displayOriginatingAddress)
 
-            val message: String = sharedPrefManager?.getMessage(incomingNum) ?: DEFAULT_SMS_MESSAGE
+            val message: String = sharedPrefManager?.getMessage(incomingNum)?: DEFAULT_SMS_MESSAGE
             sendSMS(incomingNum, message)
         }
     }
