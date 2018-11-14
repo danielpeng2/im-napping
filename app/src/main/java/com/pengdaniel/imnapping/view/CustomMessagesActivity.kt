@@ -32,19 +32,18 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
 
         presenter = CustomMessagesPresenter(this, this)
 
-        // TODO: initialize in presenter
-        // Temp data
-        val tempData = arrayListOf(CustomMessage("123", "daniel", "xD"),
-                            CustomMessage("456", "joslyn", "bun"),
-                            CustomMessage("3433331334", "ahhhhhh"))
-
         viewManager = LinearLayoutManager(this)
-        viewAdapter = CustomMessagesAdapter(tempData)
         recyclerView = custom_messages_list.apply {
             layoutManager = viewManager
-            adapter = viewAdapter
         }
 
         val sharedPrefManager = SharedPrefManager(this, SharedPrefType.MESSAGES)
+    }
+
+    override fun updateMessageList(customMessages: ArrayList<CustomMessage>) {
+        viewAdapter = CustomMessagesAdapter(customMessages)
+        custom_messages_list.apply {
+            adapter = viewAdapter
+        }
     }
 }
