@@ -26,7 +26,7 @@ class CustomMessagesAdapter(private val customMessages: ArrayList<CustomMessage>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nameView.text = customMessages[position].name
+        holder.nameView.text = customMessages[position].getDisplayName()
         holder.messageView.text = customMessages[position].message
         holder.overflowButton.setOnClickListener {
             // TODO: add implementation

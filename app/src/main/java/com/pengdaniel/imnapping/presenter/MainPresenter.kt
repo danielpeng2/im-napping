@@ -6,11 +6,11 @@ import com.pengdaniel.imnapping.model.SharedPrefManager
 import com.pengdaniel.imnapping.model.SharedPrefType
 import com.pengdaniel.imnapping.view.MainView
 
-
 // TODO: remove dependency on context
 class MainPresenter(val view: MainView, context: Context): Presenter {
 
     private var receiverStatus: Boolean
+    // TODO: inject dependency
     private val sharedPrefManager = SharedPrefManager(context)
     // TODO: remove temporary pref manager
     private val messagesPrefManager = SharedPrefManager(context, SharedPrefType.MESSAGES)
@@ -18,8 +18,8 @@ class MainPresenter(val view: MainView, context: Context): Presenter {
     init {
         // TODO: remove temp custom messages
         messagesPrefManager.setCustomMessage(address = "6505551212", newMessage = "sdfsdfsdfs")
-        messagesPrefManager.setCustomMessage(address = "+16135581398", newMessage = "Hi icon south")
-        messagesPrefManager.setCustomMessage(address = "+17788331438", newMessage = "Mrawh!")
+        messagesPrefManager.setCustomMessage(address = "+16135581398", name = "Helan", newMessage = "Hi icon south")
+        messagesPrefManager.setCustomMessage(address = "+17788331438", name = "Joslyn", newMessage = "Mrawh!")
         receiverStatus = sharedPrefManager.getReceiverStatus()
         updateStatusViews()
     }
