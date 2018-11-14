@@ -15,4 +15,5 @@
 
     <!--Content Descriptions-->
     <string name="overflow_desc">Custom message overflow menu</string>
+    <string name="kitty_desc">A kitty to show the current auto-reply status</string>
 </resources>

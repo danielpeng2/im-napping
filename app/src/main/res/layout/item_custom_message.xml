@@ -5,7 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin">
 
     <TextView
         android:id="@+id/name_text"
@@ -24,10 +27,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_text"
-        tools:text="3433331334"/>
+        tools:text="I'm napping!"/>
 
     <ImageButton
-        android:id="@+id/message_overflow"
+        android:id="@+id/overflow_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/overflow_desc"
