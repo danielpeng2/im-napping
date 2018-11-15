@@ -30,7 +30,8 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
         fab.setOnClickListener {
         }
 
-        presenter = CustomMessagesPresenter(this, this)
+        presenter = CustomMessagesPresenter(this,
+                SharedPrefManager(this, SharedPrefType.MESSAGES))
 
         viewManager = LinearLayoutManager(this)
         recyclerView = custom_messages_list.apply {
