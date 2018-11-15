@@ -37,7 +37,7 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
             layoutManager = viewManager
         }
 
-        val sharedPrefManager = SharedPrefManager(this, SharedPrefType.MESSAGES)
+        presenter.onCreate()
     }
 
     override fun updateMessageList(customMessages: ArrayList<CustomMessage>) {

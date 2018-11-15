@@ -15,7 +15,7 @@ import com.pengdaniel.imnapping.util.PermissionUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainView {
-
+    // TODO: Add MMS functionality
     private lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {

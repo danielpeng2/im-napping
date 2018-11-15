@@ -10,18 +10,14 @@ class CustomMessagesPresenter(val view: CustomMessagesView, context: Context): P
 
     // TODO: inject dependency
     private val messagesPrefManager = SharedPrefManager(context, SharedPrefType.MESSAGES)
+    private var customMessages: ArrayList<CustomMessage>
 
     init {
-        // Temp data
-        // TODO: should maybe refactor this to onCreate?
-        val tempData = arrayListOf(CustomMessage("123", "daniel", "xD"),
-                CustomMessage("456", "joslyn", "bun"),
-                CustomMessage("3433331334", "ahhhhhh"))
-        view.updateMessageList(tempData)
-        // TODO: add getAll method in PrefManager
+        customMessages = messagesPrefManager.getAllMessages()
     }
 
     override fun onCreate() {
+        view.updateMessageList(customMessages)
     }
 
     override fun onPause() {

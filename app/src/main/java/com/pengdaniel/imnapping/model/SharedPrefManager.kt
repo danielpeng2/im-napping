@@ -32,7 +32,7 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
         editor.apply()
     }
 
-    fun getDefaultMessage(): String {
+    private fun getDefaultMessage(): String {
         val json = sharedPreferences.getString(DEFAULT_MSG_KEY, null)
         return if (json == null) DEFAULT_SMS_MESSAGE else jsonAdapter.fromJson(json)!!.message
     }
@@ -40,6 +40,19 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
     fun getMessage(incomingAddress: String): String {
         val json = sharedPreferences.getString(incomingAddress, null)
         return if (json == null) getDefaultMessage() else jsonAdapter.fromJson(json)!!.message
+    }
+
+    fun getAllMessages(): ArrayList<CustomMessage> {
+        val msgMap = sharedPreferences.all
+        val messages: ArrayList<CustomMessage> = arrayListOf()
+        messages.add(CustomMessage(address = "Default Message", message = getDefaultMessage()))
+        for ((key, value) in msgMap) {
+            if (key != DEFAULT_MSG_KEY && key != RECEIVER_STATUS_KEY) {
+                val customMessage = jsonAdapter.fromJson(value.toString())
+                messages.add(customMessage ?: DEFAULT_CUSTOM_MESSAGE)
+            }
+        }
+        return messages
     }
 
     fun getReceiverStatus() = sharedPreferences.getBoolean(RECEIVER_STATUS_KEY, false)
@@ -60,6 +73,8 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
 
     companion object {
         private const val DEFAULT_SMS_MESSAGE = "I'm napping right now"
+        private val DEFAULT_CUSTOM_MESSAGE =
+                CustomMessage(address = "error", message = "I'm napping right now")
 
         private const val DEFAULT_PREF_KEY = "com.pengdaniel.imnapping.DEFAULT_PREF_KEY"
         private const val MESSAGES_PREF_KEY = "com.pengdaniel.imnapping.MESSAGES_PREF_KEY"

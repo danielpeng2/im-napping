@@ -20,7 +20,7 @@ class SmsReceiver : BroadcastReceiver() {
 
             Toast.makeText(context, "Message received", Toast.LENGTH_LONG).show()
 
-            // TODO: refactor into SmsUtils
+            // TODO: refactor into SmsUtils/handle in activity rather than model
             // Get array of SmsMessage
             val msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent)
             // Get message
