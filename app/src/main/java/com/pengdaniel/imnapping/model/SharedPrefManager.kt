@@ -45,13 +45,15 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
     fun getAllMessages(): ArrayList<CustomMessage> {
         val msgMap = sharedPreferences.all
         val messages: ArrayList<CustomMessage> = arrayListOf()
-        messages.add(CustomMessage(address = "Default Message", message = getDefaultMessage()))
+        //messages.add(CustomMessage(address = "Default Message", message = getDefaultMessage()))
         for ((key, value) in msgMap) {
             if (key != DEFAULT_MSG_KEY && key != RECEIVER_STATUS_KEY) {
                 val customMessage = jsonAdapter.fromJson(value.toString())
                 messages.add(customMessage ?: DEFAULT_CUSTOM_MESSAGE)
             }
         }
+        messages.sortBy { it.getDisplayName() }
+        messages.add(0, CustomMessage(address = "Default Message", message = getDefaultMessage()))
         return messages
     }
 

@@ -37,6 +37,11 @@ class CustomMessagesAdapter(private val customMessages: ArrayList<CustomMessage>
 
             val popup = PopupMenu(context, holder.overflowButton)
             popup.menuInflater.inflate(R.menu.custom_message_item, popup.menu)
+
+            if (position == 0) {
+                popup.menu.findItem(R.id.menu_delete).isVisible = false
+            }
+
             popup.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.menu_delete -> {
