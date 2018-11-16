@@ -3,9 +3,9 @@ package com.pengdaniel.imnapping.view
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.view.Menu
 import android.view.MenuItem
 import com.pengdaniel.imnapping.R
