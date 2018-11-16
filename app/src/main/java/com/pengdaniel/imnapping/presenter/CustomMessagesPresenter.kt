@@ -14,6 +14,7 @@ class CustomMessagesPresenter(val view: CustomMessagesView, messagesPrefManager:
     }
 
     override fun onCreate() {
+        view.initializeMessageList(customMessages)
     }
 
     override fun onPause() {

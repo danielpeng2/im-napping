@@ -9,7 +9,6 @@ import com.pengdaniel.imnapping.model.CustomMessage
 import com.pengdaniel.imnapping.model.SharedPrefManager
 import com.pengdaniel.imnapping.model.SharedPrefType
 import com.pengdaniel.imnapping.presenter.CustomMessagesPresenter
-import com.pengdaniel.imnapping.presenter.MessagesListPresenter
 import kotlinx.android.synthetic.main.activity_custom_messages.*
 
 class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
@@ -36,11 +35,17 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
         }
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = CustomMessagesAdapter(MessagesListPresenter())
         recyclerView = custom_messages_list.apply {
             layoutManager = viewManager
+        }
+
+        presenter.onCreate()
+    }
+
+    override fun initializeMessageList(customMessages: ArrayList<CustomMessage>) {
+        viewAdapter = CustomMessagesAdapter(customMessages)
+        custom_messages_list.apply {
             adapter = viewAdapter
         }
-        presenter.onCreate()
     }
 }
