@@ -4,13 +4,23 @@ import com.pengdaniel.imnapping.model.CustomMessage
 import com.pengdaniel.imnapping.model.SharedPrefManager
 import com.pengdaniel.imnapping.view.CustomMessagesView
 
-class CustomMessagesPresenter(val view: CustomMessagesView, messagesPrefManager: SharedPrefManager): Presenter {
+class CustomMessagesPresenter(val view: CustomMessagesView, private val messagesPrefManager: SharedPrefManager):
+        Presenter, PopupMenuListener {
 
-    private val messagesPrefManager: SharedPrefManager = messagesPrefManager
     private var customMessages: ArrayList<CustomMessage> = messagesPrefManager.getAllMessages()
 
     fun onFloatingActionButtonClick() {
         // TODO: add custom message
+    }
+
+    override fun deleteCustomMessage(position: Int) {
+        messagesPrefManager.deleteMessage(customMessages[position].address)
+        customMessages.removeAt(position)
+        view.deleteMessageListItem(position)
+    }
+
+    override fun editCustomMessage(position: Int) {
+
     }
 
     override fun onCreate() {

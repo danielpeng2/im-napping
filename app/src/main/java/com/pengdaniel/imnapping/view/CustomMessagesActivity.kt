@@ -43,9 +43,13 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
     }
 
     override fun initializeMessageList(customMessages: ArrayList<CustomMessage>) {
-        viewAdapter = CustomMessagesAdapter(customMessages)
+        viewAdapter = CustomMessagesAdapter(customMessages, presenter, this)
         custom_messages_list.apply {
             adapter = viewAdapter
         }
+    }
+
+    override fun deleteMessageListItem(position: Int) {
+        viewAdapter.notifyItemRemoved(position)
     }
 }

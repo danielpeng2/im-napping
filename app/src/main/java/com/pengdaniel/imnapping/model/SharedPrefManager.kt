@@ -55,6 +55,10 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
         return messages
     }
 
+    fun deleteMessage(address: String) {
+        sharedPreferences.edit { it.remove(address) }
+    }
+
     fun getReceiverStatus() = sharedPreferences.getBoolean(RECEIVER_STATUS_KEY, false)
 
     fun setDefaultMessage(newMessage: String) {
