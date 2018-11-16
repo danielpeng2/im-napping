@@ -4,5 +4,5 @@ import com.pengdaniel.imnapping.model.CustomMessage
 
 interface CustomMessagesView {
 
-    fun updateMessageList(customMessages: ArrayList<CustomMessage>)
+    fun initializeMessageList(customMessages: ArrayList<CustomMessage>)
 }

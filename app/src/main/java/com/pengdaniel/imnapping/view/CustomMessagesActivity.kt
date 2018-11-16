@@ -27,11 +27,12 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = getString(R.string.title_custom_messages)
 
-        fab.setOnClickListener {
-        }
-
         presenter = CustomMessagesPresenter(this,
                 SharedPrefManager(this, SharedPrefType.MESSAGES))
+
+        fab.setOnClickListener {
+            presenter.onFloatingActionButtonClick()
+        }
 
         viewManager = LinearLayoutManager(this)
         recyclerView = custom_messages_list.apply {
@@ -41,7 +42,7 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
         presenter.onCreate()
     }
 
-    override fun updateMessageList(customMessages: ArrayList<CustomMessage>) {
+    override fun initializeMessageList(customMessages: ArrayList<CustomMessage>) {
         viewAdapter = CustomMessagesAdapter(customMessages)
         custom_messages_list.apply {
             adapter = viewAdapter

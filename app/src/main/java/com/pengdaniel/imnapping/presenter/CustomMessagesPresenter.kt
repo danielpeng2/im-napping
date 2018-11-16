@@ -9,8 +9,12 @@ class CustomMessagesPresenter(val view: CustomMessagesView, messagesPrefManager:
     private val messagesPrefManager: SharedPrefManager = messagesPrefManager
     private var customMessages: ArrayList<CustomMessage> = messagesPrefManager.getAllMessages()
 
+    fun onFloatingActionButtonClick() {
+        // TODO: add custom message
+    }
+
     override fun onCreate() {
-        view.updateMessageList(customMessages)
+        view.initializeMessageList(customMessages)
     }
 
     override fun onPause() {
