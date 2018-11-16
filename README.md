@@ -1,10 +1,12 @@
 # I'm Napping
-An SMS auto-reply app designed for people who nap so frequently that their friends often question if they are still alive. This app will auto-reply to your friends' texts and let them know that you are still alive - just napping.
+An SMS auto-reply app designed for people who nap so frequently that their friends often question if they are still alive. This app will auto-reply to your friends' texts and let them know that you are still alive.
 
 **This is still a work in progress.**
 
-## Lessons I have learned
+## Things I learned
 
- - Using a new language like Kotlin instead of Java doesn't provide benefits unless you truly take time to understand the new language. I ended up writing Kotlin as I would Java code, aside from a few minor tweaks.
+ - This was my first time developing in Android using exclusively Kotlin. Was able to use some neat language features and cut down a lot on a lot of boilerplate code (thank you lambda expressions).
  
- - It is difficult to maintain MVP architecture even in small apps. I ran into context-dependent logic that I wasn't sure where to put. Logic doesn't belong in the view, but this logic also doesn't belong in the presenter since it should be free of Android SDK code. I think dependency injection is something that can help with my issue, I will explore this in the future.
+ - Developed in MVP architecture. Had some trouble such as deciding when code was supposed to belong or trying to decouple the presenter from the Android SDK. Learned about good practices such as dependency injection and gained a better overall grasp of MVP.
+ 
+ - Took advantage of some of the newly released Android Jetpack components. Looking foward to using more of these in the future.
