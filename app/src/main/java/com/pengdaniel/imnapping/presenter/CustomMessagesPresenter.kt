@@ -20,7 +20,7 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
     }
 
     override fun editCustomMessage(position: Int) {
-
+        // TODO: open custom message dialog
     }
 
     override fun onCreate() {
