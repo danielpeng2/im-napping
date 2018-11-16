@@ -39,7 +39,7 @@ class SmsReceiver : BroadcastReceiver() {
     }
 
     companion object {
-        private val TAG = SmsReceiver::class.java.name
+        private val TAG = "SMS_RECEIVER"
 
         private const val DEFAULT_SMS_MESSAGE = "I'm napping right now"
     }

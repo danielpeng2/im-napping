@@ -5,6 +5,7 @@
     <string name="action_message_settings">Add Custom Messages</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="save">Save</string>
 
     <!--Status Button-->
     <string name="button_status_off">Turn on</string>
@@ -12,6 +13,9 @@
 
     <!--Custom Messages Activity-->
     <string name="title_custom_messages">Create Custom Messages</string>
+
+    <!--Custom Messages Dialog Fragment-->
+    <string name="title_custom_messages_dialog">Add A Custom Message</string>
 
     <!--Content Descriptions-->
     <string name="overflow_desc">Custom message overflow menu</string>

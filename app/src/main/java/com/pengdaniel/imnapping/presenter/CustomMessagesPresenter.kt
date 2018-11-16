@@ -10,7 +10,7 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
     private var customMessages: ArrayList<CustomMessage> = messagesPrefManager.getAllMessages()
 
     fun onFloatingActionButtonClick() {
-        // TODO: add custom message
+        view.openCustomMessagesDialog()
     }
 
     override fun deleteCustomMessage(position: Int) {

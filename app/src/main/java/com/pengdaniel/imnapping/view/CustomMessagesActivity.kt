@@ -52,4 +52,8 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
     override fun deleteMessageListItem(position: Int) {
         viewAdapter.notifyItemRemoved(position)
     }
+
+    override fun openCustomMessagesDialog() {
+        CustomMessageDialogFragment.display(supportFragmentManager)
+    }
 }
