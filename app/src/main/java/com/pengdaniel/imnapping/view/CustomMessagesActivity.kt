@@ -42,7 +42,5 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
             adapter = viewAdapter
         }
         presenter.onCreate()
-
-        viewAdapter.notifyItemRemoved(0)
     }
 }
