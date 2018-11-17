@@ -128,4 +128,16 @@ class CustomMessageDialogFragment: DialogFragment(), CustomMessageDialogView {
     override fun setMessageField(message: String) {
         text_input_custom_message.editText!!.setText(message)
     }
+
+    override fun disableAddressField() {
+        text_input_phone_number.editText!!.isEnabled = false
+    }
+
+    override fun disableNameField() {
+        text_input_nickname.editText!!.isEnabled = false
+    }
+
+    override fun requestFocusMessageField() {
+        text_input_custom_message.editText!!.requestFocus()
+    }
 }

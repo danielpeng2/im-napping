@@ -57,6 +57,10 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView, CustomMe
         viewAdapter.notifyItemInserted(position)
     }
 
+    override fun editMessageListItem(position: Int) {
+        viewAdapter.notifyItemChanged(position)
+    }
+
     override fun openCustomMessagesDialog() {
         CustomMessageDialogFragment.display(supportFragmentManager)
     }

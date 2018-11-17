@@ -10,6 +10,8 @@ interface CustomMessagesView {
 
     fun addMessageListItem(position: Int)
 
+    fun editMessageListItem(position: Int)
+
     fun openCustomMessagesDialog()
 
     fun openCustomMessagesDialog(customMessage: CustomMessage)

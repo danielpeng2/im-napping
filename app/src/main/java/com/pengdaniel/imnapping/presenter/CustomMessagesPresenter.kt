@@ -19,6 +19,7 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
         val newCustomMessage = CustomMessage(address, name, message)
         val size = customMessages.size
         var added = 0
+        // Add the custom message in alphabetical order into arraylist
         for (i in 1 until size) {
             if (newCustomMessage.getDisplayName() < customMessages[i].getDisplayName()) {
                 customMessages.add(i, newCustomMessage)
@@ -35,8 +36,18 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
 
     fun onEditDialogPositiveClick(address: String, name: String, message: String, delete: String) {
         val position = customMessages.indexOfFirst { it -> it.address == delete }
-        onMenuDeleteClicked(position)
-        onAddDialogPositiveClick(address, name, message)
+        if (address == delete) {
+            if (address == "Default Message") {
+                messagesPrefManager.setDefaultMessage(message)
+            } else {
+                messagesPrefManager.setCustomMessage(address, name, message)
+            }
+            customMessages[position] = CustomMessage(address, name, message)
+            view.editMessageListItem(position)
+        } else {
+            onMenuDeleteClicked(position)
+            onAddDialogPositiveClick(address, name, message)
+        }
     }
 
     override fun onMenuDeleteClicked(position: Int) {
@@ -46,7 +57,6 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
     }
 
     override fun onMenuEditClicked(position: Int) {
-        // TODO: have to account for default case
         view.openCustomMessagesDialog(customMessages[position])
     }
 

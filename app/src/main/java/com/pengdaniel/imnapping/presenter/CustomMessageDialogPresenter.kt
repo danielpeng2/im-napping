@@ -20,6 +20,11 @@ class CustomMessageDialogPresenter(val view: CustomMessageDialogView, val addres
         view.setAddressField(address)
         view.setMessageField(message)
         view.setNameField(name)
+        if (address == "Default Message") {
+            view.disableAddressField()
+            view.disableNameField()
+            view.requestFocusMessageField()
+        }
     }
 
     override fun onCreate() {
