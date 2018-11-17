@@ -12,13 +12,13 @@ class MainPresenter(val view: MainView, context: Context): Presenter {
     // TODO: inject dependency
     private val sharedPrefManager = SharedPrefManager(context)
     // TODO: remove temporary pref manager
-    private val messagesPrefManager = SharedPrefManager(context, SharedPrefType.MESSAGES)
+    //private val messagesPrefManager = SharedPrefManager(context, SharedPrefType.MESSAGES)
 
     init {
         // TODO: remove temp custom messages
-        messagesPrefManager.setCustomMessage(address = "6505551212", newMessage = "sdfsdfsdfs")
-        messagesPrefManager.setCustomMessage(address = "+16135581398", name = "Helan", newMessage = "Hi icon south")
-        messagesPrefManager.setCustomMessage(address = "+17788331438", name = "Joslyn", newMessage = "caaaaaaaaatttt <3")
+//        messagesPrefManager.setCustomMessage(address = "6505551212", newMessage = "sdfsdfsdfs")
+//        messagesPrefManager.setCustomMessage(address = "+16135581398", name = "Helan", newMessage = "Hi icon south")
+//        messagesPrefManager.setCustomMessage(address = "+17788331438", name = "Joslyn", newMessage = "caaaaaaaaatttt <3")
         receiverStatus = sharedPrefManager.getReceiverStatus()
         updateStatusViews()
     }

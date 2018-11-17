@@ -13,6 +13,7 @@
 
     <!--Custom Messages Activity-->
     <string name="title_custom_messages">Create Custom Messages</string>
+    <string name="item_message_display">\"%1$s\"</string>
 
     <!--Custom Messages Dialog Fragment-->
     <string name="title_custom_messages_dialog">Add A Custom Message</string>

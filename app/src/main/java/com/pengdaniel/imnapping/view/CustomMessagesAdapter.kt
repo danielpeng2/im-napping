@@ -32,12 +32,14 @@ class CustomMessagesAdapter(private val customMessages: ArrayList<CustomMessage>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.nameView.text = customMessages[position].getDisplayName()
-        holder.messageView.text = customMessages[position].message
+        holder.messageView.text = context.getString(R.string.item_message_display,
+                                                    customMessages[position].message)
         holder.overflowButton.setOnClickListener {
 
             val popup = PopupMenu(context, holder.overflowButton)
             popup.menuInflater.inflate(R.menu.custom_message_item, popup.menu)
 
+            // Don't show delete for default message
             if (position == 0) {
                 popup.menu.findItem(R.id.menu_delete).isVisible = false
             }

@@ -33,7 +33,6 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
         view.addMessageListItem(added)
     }
 
-    // TODO: update recyclerview
     fun onEditDialogPositiveClick(address: String, name: String, message: String, delete: String) {
         val position = customMessages.indexOfFirst { it -> it.address == delete }
         onMenuDeleteClicked(position)
