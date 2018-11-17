@@ -10,19 +10,25 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.pengdaniel.imnapping.R
+import com.pengdaniel.imnapping.model.CustomMessage
 
 class CustomMessageDialogFragment: DialogFragment() {
 
-    //internal lateinit var dialogListener: CustomMessageDialogListener
+    private lateinit var dialogListener: CustomMessageDialogListener
     private lateinit var toolbar: Toolbar
 
-    interface CustomMessageDialogListener {
-        fun onDialogPositiveClick(dialog: DialogFragment)
-        fun onDialogNegativeClick(dialog: DialogFragment)
-    }
-
     companion object {
-        private val TAG = "CUSTOM_MESSAGE_DIALOG_FRAGMENT"
+        private const val TAG = "CUSTOM_MESSAGE_DIALOG_FRAGMENT"
+
+        fun newInstance(): CustomMessageDialogFragment {
+            val dialogFragment = CustomMessageDialogFragment()
+            return dialogFragment
+        }
+
+        fun newInstance(customMessage: CustomMessage): CustomMessageDialogFragment {
+            val dialogFragment = CustomMessageDialogFragment()
+            return dialogFragment
+        }
 
         fun display(fragmentManager: FragmentManager): CustomMessageDialogFragment {
             val dialogFragment = CustomMessageDialogFragment()
@@ -48,17 +54,21 @@ class CustomMessageDialogFragment: DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbar.setNavigationOnClickListener { dismiss() }
+        toolbar.setNavigationOnClickListener {
+            dialogListener.onDialogNegativeClick()
+            dismiss()
+        }
         toolbar.setTitle(R.string.title_custom_messages_dialog)
         toolbar.setTitleTextColor(ContextCompat.getColor(view.context, R.color.white))
         toolbar.inflateMenu(R.menu.custom_message_dialog)
         toolbar.setOnMenuItemClickListener {
+            //dialogListener.onDialogPositiveClick()
             dismiss()
             true
         }
     }
 
-    /*override fun onAttach(context: Context) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
         try {
@@ -67,7 +77,7 @@ class CustomMessageDialogFragment: DialogFragment() {
             throw ClassCastException((context.toString() +
                     " must implement CustomMessageDialogListener"))
         }
-    }*/
+    }
 
     override fun onStart() {
         super.onStart()
@@ -76,7 +86,6 @@ class CustomMessageDialogFragment: DialogFragment() {
             val width = ViewGroup.LayoutParams.MATCH_PARENT
             val height = ViewGroup.LayoutParams.MATCH_PARENT
             dialog.window?.setLayout(width, height)
-            //dialog.window?.setWindowAnimations(R.style.AppTheme_Slide)
         }
     }
 }

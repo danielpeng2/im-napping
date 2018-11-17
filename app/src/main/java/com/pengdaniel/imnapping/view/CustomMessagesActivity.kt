@@ -1,6 +1,7 @@
 package com.pengdaniel.imnapping.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.pengdaniel.imnapping.model.SharedPrefType
 import com.pengdaniel.imnapping.presenter.CustomMessagesPresenter
 import kotlinx.android.synthetic.main.activity_custom_messages.*
 
-class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
+class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView, CustomMessageDialogListener {
 
     private lateinit var presenter: CustomMessagesPresenter
 
@@ -55,5 +56,13 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView {
 
     override fun openCustomMessagesDialog() {
         CustomMessageDialogFragment.display(supportFragmentManager)
+    }
+
+    override fun onDialogPositiveClick(address: String, name: String, message: String) {
+        Log.d("AHHHH", "POSITIVE CLICK")
+    }
+
+    override fun onDialogNegativeClick() {
+        Log.d("AHHHH", "NEGATIVE CLICK")
     }
 }

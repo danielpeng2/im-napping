@@ -16,6 +16,10 @@
 
     <!--Custom Messages Dialog Fragment-->
     <string name="title_custom_messages_dialog">Add A Custom Message</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_custom_message">Custom Message</string>
+    <string name="helper_required">*Required</string>
 
     <!--Content Descriptions-->
     <string name="overflow_desc">Custom message overflow menu</string>
