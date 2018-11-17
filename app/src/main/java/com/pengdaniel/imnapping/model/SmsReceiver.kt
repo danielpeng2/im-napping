@@ -18,9 +18,6 @@ class SmsReceiver : BroadcastReceiver() {
 
         if (intent?.action?.equals(Telephony.Sms.Intents.SMS_RECEIVED_ACTION) == true) {
 
-            Toast.makeText(context, "Message received", Toast.LENGTH_LONG).show()
-
-            // TODO: refactor into SmsUtils/handle in activity rather than model
             // Get array of SmsMessage
             val msgs = Telephony.Sms.Intents.getMessagesFromIntent(intent)
             // Get message

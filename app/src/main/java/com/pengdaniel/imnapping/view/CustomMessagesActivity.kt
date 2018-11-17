@@ -1,7 +1,6 @@
 package com.pengdaniel.imnapping.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,15 +53,23 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView, CustomMe
         viewAdapter.notifyItemRemoved(position)
     }
 
+    override fun addMessageListItem(position: Int) {
+        viewAdapter.notifyItemInserted(position)
+    }
+
     override fun openCustomMessagesDialog() {
         CustomMessageDialogFragment.display(supportFragmentManager)
     }
 
-    override fun onDialogPositiveClick(address: String, name: String, message: String) {
-        Log.d("AHHHH", "POSITIVE CLICK")
+    override fun openCustomMessagesDialog(customMessage: CustomMessage) {
+        CustomMessageDialogFragment.display(supportFragmentManager, customMessage)
     }
 
-    override fun onDialogNegativeClick() {
-        Log.d("AHHHH", "NEGATIVE CLICK")
+    override fun onAddDialogPositiveClick(address: String, name: String, message: String) {
+        presenter.onAddDialogPositiveClick(address, name, message)
+    }
+
+    override fun onEditDialogPositiveClick(address: String, name: String, message: String, delete: String) {
+        presenter.onEditDialogPositiveClick(address, name, message, delete)
     }
 }

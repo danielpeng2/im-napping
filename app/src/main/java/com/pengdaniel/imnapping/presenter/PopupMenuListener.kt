@@ -2,8 +2,8 @@ package com.pengdaniel.imnapping.presenter
 
 interface PopupMenuListener {
 
-    fun deleteCustomMessage(position: Int)
+    fun onMenuDeleteClicked(position: Int)
 
-    fun editCustomMessage(position: Int)
+    fun onMenuEditClicked(position: Int)
 
 }

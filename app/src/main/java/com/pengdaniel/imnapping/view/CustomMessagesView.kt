@@ -8,5 +8,9 @@ interface CustomMessagesView {
 
     fun deleteMessageListItem(position: Int)
 
+    fun addMessageListItem(position: Int)
+
     fun openCustomMessagesDialog()
+
+    fun openCustomMessagesDialog(customMessage: CustomMessage)
 }

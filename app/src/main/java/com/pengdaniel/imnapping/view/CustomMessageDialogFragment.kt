@@ -11,22 +11,30 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.model.CustomMessage
+import com.pengdaniel.imnapping.presenter.CustomMessageDialogPresenter
+import kotlinx.android.synthetic.main.fragment_custom_message_dialog.*
 
-class CustomMessageDialogFragment: DialogFragment() {
+class CustomMessageDialogFragment: DialogFragment(), CustomMessageDialogView {
 
+    private lateinit var presenter: CustomMessageDialogPresenter
     private lateinit var dialogListener: CustomMessageDialogListener
     private lateinit var toolbar: Toolbar
 
     companion object {
         private const val TAG = "CUSTOM_MESSAGE_DIALOG_FRAGMENT"
+        private const val ARG_ADDRESS = "ARG_ADDRESS"
+        private const val ARG_NAME = "ARG_NAME"
+        private const val ARG_MESSAGE = "ARG_MESSAGE"
 
-        fun newInstance(): CustomMessageDialogFragment {
+        private fun newInstance(customMessage: CustomMessage): CustomMessageDialogFragment {
             val dialogFragment = CustomMessageDialogFragment()
-            return dialogFragment
-        }
+            val bundle = Bundle()
 
-        fun newInstance(customMessage: CustomMessage): CustomMessageDialogFragment {
-            val dialogFragment = CustomMessageDialogFragment()
+            bundle.putString(ARG_ADDRESS, customMessage.address)
+            bundle.putString(ARG_NAME, customMessage.name)
+            bundle.putString(ARG_MESSAGE, customMessage.message)
+
+            dialogFragment.arguments = bundle
             return dialogFragment
         }
 
@@ -35,11 +43,27 @@ class CustomMessageDialogFragment: DialogFragment() {
             dialogFragment.show(fragmentManager, TAG)
             return dialogFragment
         }
+
+        fun display(fragmentManager: FragmentManager, customMessage: CustomMessage):
+                CustomMessageDialogFragment {
+            val dialogFragment = newInstance(customMessage)
+            dialogFragment.show(fragmentManager, TAG)
+            return dialogFragment
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog)
+        val bundle = arguments
+        presenter = if (bundle == null) {
+            CustomMessageDialogPresenter(this)
+        } else {
+            val address = bundle.getString(ARG_ADDRESS, "")
+            val name = bundle.getString(ARG_NAME, "")
+            val message = bundle.getString(ARG_MESSAGE, "")
+            CustomMessageDialogPresenter(this, address, name, message)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -55,17 +79,21 @@ class CustomMessageDialogFragment: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         toolbar.setNavigationOnClickListener {
-            dialogListener.onDialogNegativeClick()
             dismiss()
         }
         toolbar.setTitle(R.string.title_custom_messages_dialog)
         toolbar.setTitleTextColor(ContextCompat.getColor(view.context, R.color.white))
         toolbar.inflateMenu(R.menu.custom_message_dialog)
         toolbar.setOnMenuItemClickListener {
-            //dialogListener.onDialogPositiveClick()
+            // TODO: add error checking
+            val address = text_input_phone_number.editText!!.text.toString()
+            val name = text_input_nickname.editText!!.text.toString()
+            val message = text_input_custom_message.editText!!.text.toString()
+            presenter.onDialogPositiveClicked(dialogListener, address, name, message)
             dismiss()
             true
         }
+        presenter.setViewFields()
     }
 
     override fun onAttach(context: Context) {
@@ -87,5 +115,17 @@ class CustomMessageDialogFragment: DialogFragment() {
             val height = ViewGroup.LayoutParams.MATCH_PARENT
             dialog.window?.setLayout(width, height)
         }
+    }
+
+    override fun setAddressField(address: String) {
+        text_input_phone_number.editText!!.setText(address)
+    }
+
+    override fun setNameField(name: String) {
+        text_input_nickname.editText!!.setText(name)
+    }
+
+    override fun setMessageField(message: String) {
+        text_input_custom_message.editText!!.setText(message)
     }
 }
