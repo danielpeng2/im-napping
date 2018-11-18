@@ -8,4 +8,7 @@ interface CustomMessageDialogView {
     fun disableAddressField()
     fun disableNameField()
     fun requestFocusMessageField()
+    fun showAddressFieldError(error: String)
+    fun showMessageFieldError(error: String)
+    fun dismissDialog()
 }

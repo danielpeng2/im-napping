@@ -89,7 +89,6 @@ class CustomMessageDialogFragment: DialogFragment(), CustomMessageDialogView {
             val name = text_input_nickname.editText!!.text.toString()
             val message = text_input_custom_message.editText!!.text.toString()
             presenter.onDialogPositiveClicked(dialogListener, address, name, message)
-            dismiss()
             true
         }
         presenter.setViewFields()
@@ -138,5 +137,17 @@ class CustomMessageDialogFragment: DialogFragment(), CustomMessageDialogView {
 
     override fun requestFocusMessageField() {
         text_input_custom_message.editText!!.requestFocus()
+    }
+
+    override fun showAddressFieldError(error: String) {
+        text_input_phone_number.error = error
+    }
+
+    override fun showMessageFieldError(error: String) {
+        text_input_custom_message.error = error
+    }
+
+    override fun dismissDialog() {
+        dismiss()
     }
 }
