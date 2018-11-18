@@ -6,7 +6,8 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.DEFAULT) {
+class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.DEFAULT):
+        SharedPrefManagerable{
 
     private var sharedPreferences: SharedPreferences
     private val moshi: Moshi
@@ -37,12 +38,12 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
         return if (json == null) DEFAULT_SMS_MESSAGE else jsonAdapter.fromJson(json)!!.message
     }
 
-    fun getMessage(incomingAddress: String): String {
+    override fun getMessage(incomingAddress: String): String {
         val json = sharedPreferences.getString(incomingAddress, null)
         return if (json == null) getDefaultMessage() else jsonAdapter.fromJson(json)!!.message
     }
 
-    fun getAllMessages(): ArrayList<CustomMessage> {
+    override fun getAllMessages(): ArrayList<CustomMessage> {
         val msgMap = sharedPreferences.all
         val messages: ArrayList<CustomMessage> = arrayListOf()
         for ((key, value) in msgMap) {
@@ -56,23 +57,23 @@ class SharedPrefManager(context: Context, type: SharedPrefType = SharedPrefType.
         return messages
     }
 
-    fun deleteMessage(address: String) {
+    override fun deleteMessage(address: String) {
         sharedPreferences.edit { it.remove(address) }
     }
 
-    fun getReceiverStatus() = sharedPreferences.getBoolean(RECEIVER_STATUS_KEY, false)
+    override fun getReceiverStatus() = sharedPreferences.getBoolean(RECEIVER_STATUS_KEY, false)
 
-    fun setDefaultMessage(newMessage: String) {
+    override fun setDefaultMessage(newMessage: String) {
         val customMessage = CustomMessage(address = DEFAULT_MSG_KEY, message = newMessage)
         sharedPreferences.edit { it.putString(DEFAULT_MSG_KEY, jsonAdapter.toJson(customMessage)) }
     }
 
-    fun setCustomMessage(address: String, name: String = "", newMessage: String) {
+    override fun setCustomMessage(address: String, name: String, newMessage: String) {
         val customMessage = CustomMessage(address, name, newMessage)
         sharedPreferences.edit { it.putString(address, jsonAdapter.toJson(customMessage)) }
     }
 
-    fun setReceiverStatus(newStatus: Boolean) {
+    override fun setReceiverStatus(newStatus: Boolean) {
         sharedPreferences.edit { it.putBoolean(RECEIVER_STATUS_KEY, newStatus) }
     }
 

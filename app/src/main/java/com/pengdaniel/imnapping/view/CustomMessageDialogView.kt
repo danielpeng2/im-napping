@@ -1,5 +1,7 @@
 package com.pengdaniel.imnapping.view
 
+import androidx.annotation.StringRes
+
 interface CustomMessageDialogView {
 
     fun setAddressField(address: String)
@@ -8,7 +10,7 @@ interface CustomMessageDialogView {
     fun disableAddressField()
     fun disableNameField()
     fun requestFocusMessageField()
-    fun showAddressFieldError(error: String)
-    fun showMessageFieldError(error: String)
+    fun showAddressFieldError(@StringRes error: Int)
+    fun showMessageFieldError(@StringRes error: Int)
     fun dismissDialog()
 }

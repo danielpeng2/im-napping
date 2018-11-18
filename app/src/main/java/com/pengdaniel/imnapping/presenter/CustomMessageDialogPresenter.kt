@@ -1,5 +1,6 @@
 package com.pengdaniel.imnapping.presenter
 
+import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.view.CustomMessageDialogListener
 import com.pengdaniel.imnapping.view.CustomMessageDialogView
 
@@ -9,15 +10,15 @@ class CustomMessageDialogPresenter(val view: CustomMessageDialogView, val addres
     private fun validateAddressField(address: String): Boolean {
         return when {
             address.isBlank() -> {
-                view.showAddressFieldError("Phone number is empty")
+                view.showAddressFieldError(R.string.error_empty_phone_number)
                 false
             }
             address.toIntOrNull() == null -> {
-                view.showAddressFieldError("Must enter a valid phone number")
+                view.showAddressFieldError(R.string.error_invalid_phone_number)
                 false
             }
             else -> {
-                view.showAddressFieldError("")
+                view.showAddressFieldError(R.string.error_stop)
                 true
             }
         }
@@ -25,10 +26,10 @@ class CustomMessageDialogPresenter(val view: CustomMessageDialogView, val addres
 
     private fun validateMessageField(message: String): Boolean {
         return if (message.isBlank()) {
-            view.showMessageFieldError("Message is empty")
+            view.showMessageFieldError(R.string.error_empty_message)
             false
         } else {
-            view.showMessageFieldError("")
+            view.showMessageFieldError(R.string.error_stop)
             true
         }
     }

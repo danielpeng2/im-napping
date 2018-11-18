@@ -1,12 +1,10 @@
 package com.pengdaniel.imnapping.presenter
 
-import android.util.Log
 import com.pengdaniel.imnapping.model.CustomMessage
-import com.pengdaniel.imnapping.model.SharedPrefManager
+import com.pengdaniel.imnapping.model.SharedPrefManagerable
 import com.pengdaniel.imnapping.view.CustomMessagesView
 
-// TODO: make messagesPrefManager interface
-class CustomMessagesPresenter(val view: CustomMessagesView, private val messagesPrefManager: SharedPrefManager):
+class CustomMessagesPresenter(val view: CustomMessagesView, private val messagesPrefManager: SharedPrefManagerable):
         Presenter, PopupMenuListener {
 
     private var customMessages: ArrayList<CustomMessage> = messagesPrefManager.getAllMessages()
@@ -45,7 +43,6 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
                 added = size
             }
         }
-        Log.d("TESTING", "Added $name to $added")
         view.addMessageListItem(added)
     }
 
@@ -71,7 +68,6 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
 
     override fun onMenuDeleteClicked(position: Int) {
         messagesPrefManager.deleteMessage(customMessages[position].address)
-        Log.d("TESTING", "Removed " + customMessages[position].name + " from " + position)
         customMessages.removeAt(position)
         view.deleteMessageListItem(position)
     }

@@ -8,7 +8,9 @@ import android.os.Bundle
 import androidx.annotation.StringRes
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.DrawableRes
 import com.pengdaniel.imnapping.R
+import com.pengdaniel.imnapping.model.SharedPrefManager
 import com.pengdaniel.imnapping.model.SmsReceiver
 import com.pengdaniel.imnapping.presenter.MainPresenter
 import com.pengdaniel.imnapping.util.PermissionUtil
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
         setSupportActionBar(main_toolbar)
 
-        presenter = MainPresenter(this, this)
+        presenter = MainPresenter(this, SharedPrefManager(this))
         presenter.onCreate()
 
         status_button.setOnClickListener {
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity(), MainView {
         status_button.text = getString(buttonText)
     }
 
-    override fun updateStatusImage(image: Int) {
+    override fun updateStatusImage(@DrawableRes image: Int) {
         status_kitty.setImageResource(image)
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -139,12 +140,12 @@ class CustomMessageDialogFragment: DialogFragment(), CustomMessageDialogView {
         text_input_custom_message.editText!!.requestFocus()
     }
 
-    override fun showAddressFieldError(error: String) {
-        text_input_phone_number.error = error
+    override fun showAddressFieldError(@StringRes error: Int) {
+        text_input_phone_number.error = getString(error)
     }
 
-    override fun showMessageFieldError(error: String) {
-        text_input_custom_message.error = error
+    override fun showMessageFieldError(@StringRes error: Int) {
+        text_input_custom_message.error = getString(error)
     }
 
     override fun dismissDialog() {

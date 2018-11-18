@@ -22,6 +22,10 @@
     <string name="hint_name">Name</string>
     <string name="hint_custom_message">Custom Message</string>
     <string name="helper_phone_number">*Enter your country code in front of your number</string>
+    <string name="error_empty_phone_number">Phone number is empty</string>
+    <string name="error_invalid_phone_number">Must enter a valid phone number</string>
+    <string name="error_empty_message">Message is empty</string>
+    <string name="error_stop">""</string>
 
     <!--Content Descriptions-->
     <string name="overflow_desc">Custom message overflow menu</string>

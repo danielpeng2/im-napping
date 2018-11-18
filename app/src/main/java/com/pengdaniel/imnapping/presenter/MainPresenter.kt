@@ -1,23 +1,14 @@
 package com.pengdaniel.imnapping.presenter
 
-import android.content.Context
 import com.pengdaniel.imnapping.R
-import com.pengdaniel.imnapping.model.SharedPrefManager
+import com.pengdaniel.imnapping.model.SharedPrefManagerable
 import com.pengdaniel.imnapping.view.MainView
 
-class MainPresenter(val view: MainView, context: Context): Presenter {
+class MainPresenter(val view: MainView, private val sharedPrefManager: SharedPrefManagerable): Presenter {
 
     private var receiverStatus: Boolean
-    // TODO: inject dependency
-    private val sharedPrefManager = SharedPrefManager(context)
-    // TODO: remove temporary pref manager
-    //private val messagesPrefManager = SharedPrefManager(context, SharedPrefType.MESSAGES)
 
     init {
-        // TODO: remove temp custom messages
-//        messagesPrefManager.setCustomMessage(address = "6505551212", newMessage = "sdfsdfsdfs")
-//        messagesPrefManager.setCustomMessage(address = "+16135581398", name = "Helan", newMessage = "Hi icon south")
-//        messagesPrefManager.setCustomMessage(address = "+17788331438", name = "Joslyn", newMessage = "caaaaaaaaatttt <3")
         receiverStatus = sharedPrefManager.getReceiverStatus()
         updateStatusViews()
     }
