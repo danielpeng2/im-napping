@@ -47,11 +47,11 @@ class CustomMessagesAdapter(private val customMessages: ArrayList<CustomMessage>
             popup.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.menu_delete -> {
-                        popupMenuListener.onMenuDeleteClicked(position)
+                        popupMenuListener.onMenuDeleteClicked(holder.adapterPosition)
                         true
                     }
                     R.id.menu_edit -> {
-                        popupMenuListener.onMenuEditClicked(position)
+                        popupMenuListener.onMenuEditClicked(holder.adapterPosition)
                         true
                     }
                     else -> false
