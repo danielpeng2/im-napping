@@ -13,7 +13,7 @@ class CustomMessageDialogPresenter(val view: CustomMessageDialogView, val addres
                 view.showAddressFieldError(R.string.error_empty_phone_number)
                 false
             }
-            address.toIntOrNull() == null -> {
+            address.toDoubleOrNull() == null -> {
                 view.showAddressFieldError(R.string.error_invalid_phone_number)
                 false
             }
@@ -48,10 +48,13 @@ class CustomMessageDialogPresenter(val view: CustomMessageDialogView, val addres
     }
 
     fun setViewFields() {
-        if (address.isNotEmpty()) view.setAddressField(address.substring(1))
+        if (address.isNotEmpty() && address != "Default Message") {
+            view.setAddressField(address.substring(1))
+        }
         view.setMessageField(message)
         view.setNameField(name)
         if (address == "Default Message") {
+            view.setAddressField(address)
             view.disableAddressField()
             view.disableNameField()
             view.requestFocusMessageField()
