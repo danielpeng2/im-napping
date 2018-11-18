@@ -38,12 +38,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/hint_phone_number"
-            app:helperText="@string/helper_required"
+            app:helperText="@string/helper_phone_number"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/hint_custom_message"
-            app:helperText="@string/helper_required"
             app:layout_constraintTop_toBottomOf="@+id/text_input_nickname">
 
             <com.google.android.material.textfield.TextInputEditText
