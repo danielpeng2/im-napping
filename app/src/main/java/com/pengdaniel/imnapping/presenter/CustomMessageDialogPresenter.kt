@@ -8,16 +8,15 @@ class CustomMessageDialogPresenter(val view: CustomMessageDialogView, val addres
 
     fun onDialogPositiveClicked(dialogListener: CustomMessageDialogListener, address: String,
                                 name: String, message: String) {
-        // TODO: error handling
         if (this.address == "") {
-            dialogListener.onAddDialogPositiveClick(address, name, message)
+            dialogListener.onAddDialogPositiveClick("+$address", name, message)
         } else {
-            dialogListener.onEditDialogPositiveClick(address, name, message, this.address)
+            dialogListener.onEditDialogPositiveClick("+$address", name, message, this.address)
         }
     }
 
     fun setViewFields() {
-        view.setAddressField(address)
+        if (address != "") view.setAddressField(address.substring(1))
         view.setMessageField(message)
         view.setNameField(name)
         if (address == "Default Message") {

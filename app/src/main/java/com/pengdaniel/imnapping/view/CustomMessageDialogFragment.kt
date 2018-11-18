@@ -85,7 +85,6 @@ class CustomMessageDialogFragment: DialogFragment(), CustomMessageDialogView {
         toolbar.setTitleTextColor(ContextCompat.getColor(view.context, R.color.white))
         toolbar.inflateMenu(R.menu.custom_message_dialog)
         toolbar.setOnMenuItemClickListener {
-            // TODO: add error checking
             val address = text_input_phone_number.editText!!.text.toString()
             val name = text_input_nickname.editText!!.text.toString()
             val message = text_input_custom_message.editText!!.text.toString()

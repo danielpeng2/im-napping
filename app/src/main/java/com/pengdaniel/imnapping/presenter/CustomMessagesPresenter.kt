@@ -45,15 +45,11 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
                 added = size
             }
         }
-        Log.d("TESTING", "Added " + name + " to " + added)
+        Log.d("TESTING", "Added $name to $added")
         view.addMessageListItem(added)
     }
 
     fun onEditDialogPositiveClick(address: String, name: String, message: String, delete: String) {
-        if (isExistingAddress(address)) {
-            view.displayExistingAddressError()
-            return
-        }
         val position = customMessages.indexOfFirst { it -> it.address == delete }
         if (address == delete) {
             if (address == "Default Message") {
@@ -64,6 +60,10 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
             customMessages[position] = CustomMessage(address, name, message)
             view.editMessageListItem(position)
         } else {
+            if (isExistingAddress(address)) {
+                view.displayExistingAddressError()
+                return
+            }
             onMenuDeleteClicked(position)
             onAddDialogPositiveClick(address, name, message)
         }
