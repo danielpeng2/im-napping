@@ -14,7 +14,19 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
         view.openCustomMessagesDialog()
     }
 
+    private fun isExistingAddress(address: String): Boolean {
+        val position = customMessages.indexOfFirst { it -> it.address == address }
+        if (position != -1) {
+            return true
+        }
+        return false
+    }
+
     fun onAddDialogPositiveClick(address: String, name: String, message: String) {
+        if (isExistingAddress(address)) {
+            view.displayExistingAddressError()
+            return
+        }
         messagesPrefManager.setCustomMessage(address, name, message)
         val newCustomMessage = CustomMessage(address, name, message)
         val size = customMessages.size
@@ -35,6 +47,10 @@ class CustomMessagesPresenter(val view: CustomMessagesView, private val messages
     }
 
     fun onEditDialogPositiveClick(address: String, name: String, message: String, delete: String) {
+        if (isExistingAddress(address)) {
+            view.displayExistingAddressError()
+            return
+        }
         val position = customMessages.indexOfFirst { it -> it.address == delete }
         if (address == delete) {
             if (address == "Default Message") {

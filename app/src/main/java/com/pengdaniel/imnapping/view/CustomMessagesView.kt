@@ -15,4 +15,6 @@ interface CustomMessagesView {
     fun openCustomMessagesDialog()
 
     fun openCustomMessagesDialog(customMessage: CustomMessage)
+
+    fun displayExistingAddressError()
 }

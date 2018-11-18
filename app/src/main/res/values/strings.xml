@@ -14,6 +14,7 @@
     <!--Custom Messages Activity-->
     <string name="title_custom_messages">Create Custom Messages</string>
     <string name="item_message_display">\"%1$s\"</string>
+    <string name="error_existing_address">This phone number already has a custom message.</string>
 
     <!--Custom Messages Dialog Fragment-->
     <string name="title_custom_messages_dialog">Add A Custom Message</string>

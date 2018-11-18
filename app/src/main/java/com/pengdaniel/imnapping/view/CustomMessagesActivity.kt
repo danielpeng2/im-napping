@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.model.CustomMessage
 import com.pengdaniel.imnapping.model.SharedPrefManager
@@ -75,5 +76,10 @@ class CustomMessagesActivity : AppCompatActivity(), CustomMessagesView, CustomMe
 
     override fun onEditDialogPositiveClick(address: String, name: String, message: String, delete: String) {
         presenter.onEditDialogPositiveClick(address, name, message, delete)
+    }
+
+    override fun displayExistingAddressError() {
+        Snackbar.make(layout_custom_messages,
+                R.string.error_existing_address, Snackbar.LENGTH_LONG).show()
     }
 }
