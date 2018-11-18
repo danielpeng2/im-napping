@@ -3,7 +3,6 @@ package com.pengdaniel.imnapping.presenter
 import android.content.Context
 import com.pengdaniel.imnapping.R
 import com.pengdaniel.imnapping.model.SharedPrefManager
-import com.pengdaniel.imnapping.model.SharedPrefType
 import com.pengdaniel.imnapping.view.MainView
 
 class MainPresenter(val view: MainView, context: Context): Presenter {
@@ -36,10 +35,10 @@ class MainPresenter(val view: MainView, context: Context): Presenter {
     private fun updateStatusViews() {
         if (receiverStatus) {
             view.updateStatusButtonText(R.string.button_status_on)
-            view.updateStatusImage(R.drawable.ic_kitty_asleep)
+            view.updateStatusImage(R.drawable.ic_kitty_outline_asleep)
         } else {
             view.updateStatusButtonText(R.string.button_status_off)
-            view.updateStatusImage(R.drawable.ic_kitty_awake)
+            view.updateStatusImage(R.drawable.ic_kitty_outline_awake)
         }
     }
 
