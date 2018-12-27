@@ -1,8 +1,6 @@
 # I'm Napping
 An SMS auto-reply app designed for people who nap so frequently that their friends often question if they are still alive. This app will auto-reply to your friends' texts and let them know that you are still alive.
 
-**This is still a work in progress.**
-
 ## Things I learned
 
  - This was my first time developing in Android using exclusively Kotlin. Was able to use some neat language features and cut down a lot on a lot of boilerplate code (thank you lambda expressions).
